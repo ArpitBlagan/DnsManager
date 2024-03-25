@@ -10,13 +10,12 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { DropdownMenuIcon, TrashIcon } from "@radix-ui/react-icons";
+import { DropdownMenuIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import {
   DropdownMenuRadioGroup,

@@ -67,7 +67,9 @@ function RecordTable({
       toast.error("something went wrong");
     }
   };
-  const handleUpdate = async (ele: any) => {};
+  const handleUpdate = async (ele: any) => {
+    console.log(ele);
+  };
   const handleCreate = async (data: any) => {
     setL(true);
     toast("creating zone wait");
