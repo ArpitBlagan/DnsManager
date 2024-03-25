@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 
-const Dialog = ({ name, header, data, button }: any) => {
+const Dialog = ({ name, header, button }: any) => {
   return (
     <DD>
       <DialogTrigger>{name}</DialogTrigger>
