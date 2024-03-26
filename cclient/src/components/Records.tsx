@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import RecordTable from "./RecordTable";
+import { Skeleton } from "./ui/skeleton";
 const Records = () => {
   const { state } = useLocation();
   console.log(state);
@@ -16,7 +17,9 @@ const Records = () => {
           zoneName={state.zoneName}
         />
       ) : (
-        <h1>trying to fetch the data...</h1>
+        <div>
+          <Skeleton />
+        </div>
       )}
     </div>
   );

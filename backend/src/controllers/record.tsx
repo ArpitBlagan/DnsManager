@@ -78,6 +78,8 @@ export const deleteR = async (req: Request, res: Response) => {
 
 export const createR = async (req: Request, res: Response) => {
   const body = req.body;
+  const ttl = parseInt(body.ttl) | 3600;
+  delete body.ttl;
   const ff = otherSchame.safeParse(body);
   if (!ff.success) {
     return res.status(411).json({ message: "invalid inputs" });
@@ -90,7 +92,11 @@ export const createR = async (req: Request, res: Response) => {
         Authorization: bearer,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify({
+        properties: {
+          TTL: 3600,
+        },
+      }),
     };
     const ress = await fetch(
       ` https://management.azure.com/subscriptions/${body.subscriptionId}/resourceGroups/${body.resourceGroupName}/providers/Microsoft.Network/dnsZones/${body.zoneName}/${body.recordType}/${body.relativeRecordSetName}?api-version=2018-05-01`,
@@ -106,20 +112,29 @@ export const createR = async (req: Request, res: Response) => {
 
 export const updateR = async (req: Request, res: Response) => {
   const body = req.body;
+  console.log(body);
+  const ttl = parseInt(body.ttl) | 0;
+  delete body.ttl;
   const ff = otherSchame.safeParse(body);
   if (!ff.success) {
     return res.status(411).json({ message: "invalid inputs" });
   }
   try {
-    var headers = new Headers();
     var bearer = "Bearer " + body.accessToken;
-    headers.append("Authorization", bearer);
     var options = {
       method: "PATCH",
-      headers,
+      headers: {
+        Authorization: bearer,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        properties: {
+          TTL: ttl,
+        },
+      }),
     };
     const ress = await fetch(
-      ` https://management.azure.com/subscriptions/${body.subscriptionId}/resourceGroups/${body.resourceGroupName}/providers/Microsoft.Network/dnsZones/${body.zoneName}/all?api-version=2018-05-01`,
+      ` https://management.azure.com/subscriptions/${body.subscriptionId}/resourceGroups/${body.resourceGroupName}/providers/Microsoft.Network/dnsZones/${body.zoneName}/${body.recordType}/${body.relativeRecordSetName}?api-version=2018-05-01`,
       options
     );
     res.status(202).json({ message: "created successfully" });

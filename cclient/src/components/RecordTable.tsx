@@ -67,8 +67,28 @@ function RecordTable({
       toast.error("something went wrong");
     }
   };
-  const handleUpdate = async (ele: any) => {
-    console.log(ele);
+  const handleUpdate = async (data: any) => {
+    setL(true);
+    toast("creating zone wait");
+    try {
+      const res = await axios.patch(`http://localhost:4002/api/lucid/record`, {
+        subscriptionId,
+        resourceGroupName,
+        zoneName,
+        accessToken,
+        relativeRecordSetName: data.name,
+        recordType: data.type,
+        ttl: data.ttl,
+      });
+      console.log(res.data);
+      toast.success("created successfully");
+      setC(!change);
+      setL(false);
+    } catch (err) {
+      console.log(err);
+      toast.error("some thing went wrong not able to create zone..");
+      setL(false);
+    }
   };
   const handleCreate = async (data: any) => {
     setL(true);
@@ -81,6 +101,7 @@ function RecordTable({
         accessToken,
         relativeRecordSetName: data.name,
         recordType: data.type,
+        ttl: data.ttl,
       });
       console.log(res.data);
       toast.success("created successfully");
@@ -101,9 +122,9 @@ function RecordTable({
         <div>
           <div className="flex justify-end items-center my-2">
             {loading ? (
-              <Button variant={"destructive"}>
+              <Button variant={"destructive"} disabled={loading}>
                 Creating
-                <Skeleton className="h-12 w-12 rounded-full" />
+                <Skeleton className="h-5 w-5 rounded-full" />
               </Button>
             ) : (
               <CreateRecord handleCreate={handleCreate} />

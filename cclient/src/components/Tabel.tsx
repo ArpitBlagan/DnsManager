@@ -8,12 +8,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import DelDialog from "./DelDialog";
+import UpdateDailog from "./UpdateDailog";
 const Tabel = ({
   records,
   subscriptionId,
   zoneName,
   resouceGroupName,
   handleDelete,
+  handleUpdate,
 }: any) => {
   return (
     <Table className="border backdrop-blur-lg rounded-xl p-2">
@@ -24,6 +26,7 @@ const Tabel = ({
           <TableHead>Dns zone</TableHead>
           <TableHead>Name</TableHead>
           <TableHead>eTag</TableHead>
+          <TableHead>TTL</TableHead>
           <TableHead>Subscription ID</TableHead>
           <TableHead>Type</TableHead>
           <TableHead>Delete</TableHead>
@@ -39,6 +42,7 @@ const Tabel = ({
               <TableCell>{zoneName}</TableCell>
               <TableCell>{ele.name}</TableCell>
               <TableCell>{ele.etag}</TableCell>
+              <TableCell>{ele.properties.TTL}</TableCell>
               <TableCell>{subscriptionId}</TableCell>
               <TableCell>{type}</TableCell>
               <TableCell>
@@ -47,7 +51,12 @@ const Tabel = ({
                   data={{ name: ele.name, type }}
                 />
               </TableCell>
-              <TableCell></TableCell>
+              <TableCell>
+                <UpdateDailog
+                  handleUpdate={handleUpdate}
+                  data={{ name: ele.name, type, ttl: ele.properties.TTL }}
+                />
+              </TableCell>
             </TableRow>
           );
         })}
