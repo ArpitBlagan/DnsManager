@@ -12,10 +12,12 @@ const Main = () => {
   const [data, setData] = useState<any[]>([]);
   useEffect(() => {
     const getToken = async () => {
+      toast("Trying to fetch Details of you Azure account");
       const ress = await instance.acquireTokenSilent({
         scopes: ["https://management.azure.com/user_impersonation"],
         account: accounts[0],
       });
+      console.log(ress);
       setAcc(ress.accessToken);
       if (ress.accessToken) {
         toast("fetching subscriptions of your azure account..");
