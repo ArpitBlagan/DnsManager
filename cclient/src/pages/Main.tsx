@@ -34,7 +34,7 @@ const Main = () => {
           const res1 = await fetch(graphEndpoint, options);
           const ff = await res1.json();
           if (ff.value.length == 0) {
-            toast.error("Not subscriptions");
+            toast.error("No subscriptions is there");
             return;
           }
           setSub(ff.value);
