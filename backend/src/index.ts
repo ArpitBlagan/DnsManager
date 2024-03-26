@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(CookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "*"],
+    origin: ["http://localhost:5173", "*", "dns-manager-sand.vercel.app"],
     credentials: true,
   })
 );
