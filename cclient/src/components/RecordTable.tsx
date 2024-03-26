@@ -149,7 +149,7 @@ function RecordTable({
               <CreateRecord handleCreate={handleCreate} />
             )}
             <input
-              className="py-2 px-4 border backdrop-blur-lg rounded-xl"
+              className="py-2 px-4 border border-gary-200 rounded-xl"
               value={match}
               onChange={(e) => {
                 setM(e.target.value);
