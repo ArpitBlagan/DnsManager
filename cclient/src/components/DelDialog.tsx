@@ -5,10 +5,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { TrashIcon } from "@radix-ui/react-icons";
-import { DialogClose } from "@radix-ui/react-dialog";
 
 const DelDialog = ({ handleDelete, data }: any) => {
   return (
@@ -23,6 +23,7 @@ const DelDialog = ({ handleDelete, data }: any) => {
         </DialogHeader>
         <DialogClose>
           <Button
+            type="submit"
             variant={"outline"}
             onClick={async (e) => {
               e.preventDefault();

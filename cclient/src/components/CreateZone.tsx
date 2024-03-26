@@ -1,8 +1,8 @@
 import {
   Dialog as DD,
+  DialogClose,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -13,14 +13,12 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./ui/button";
 import { DropdownMenuIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
-import {
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-} from "@radix-ui/react-dropdown-menu";
 const CreateZone = ({ handleCreate, resources }: any) => {
   const [name, setName] = useState("");
   const [res, setRes] = useState("");
@@ -80,8 +78,9 @@ const CreateZone = ({ handleCreate, resources }: any) => {
             </DropdownMenu>
           </div>
         </div>
-        <DialogFooter>
+        <DialogClose>
           <Button
+            type="submit"
             onClick={(e) => {
               e.preventDefault();
               handleCreate(name, res);
@@ -89,7 +88,7 @@ const CreateZone = ({ handleCreate, resources }: any) => {
           >
             Create
           </Button>
-        </DialogFooter>
+        </DialogClose>
       </DialogContent>
     </DD>
   );

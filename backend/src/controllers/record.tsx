@@ -94,7 +94,7 @@ export const createR = async (req: Request, res: Response) => {
       },
       body: JSON.stringify({
         properties: {
-          TTL: 3600,
+          TTL: ttl,
         },
       }),
     };

@@ -22,9 +22,10 @@ function RecordTable({
   const [loading, setL] = useState(false);
   useEffect(() => {
     const getRecord = async () => {
+      toast("fetching records wait..");
       try {
         const res = await axios.get(
-          `http://localhost:4002/api/lucid/record?resourceGroupName=${resourceGroupName}&subscriptionId=${subscriptionId}&zoneName=${zoneName}`,
+          `https://dnsmanager-bfc3.onrender.com/api/lucid/record?resourceGroupName=${resourceGroupName}&subscriptionId=${subscriptionId}&zoneName=${zoneName}`,
           {
             headers: {
               Authorization: accessToken,
@@ -52,7 +53,7 @@ function RecordTable({
     toast(`deleteing the record with name ${name} wait`);
     try {
       const res = await axios.delete(
-        `http://localhost:4002/api/lucid/record?subscriptionId=${subscriptionId}&resourceGroupName=${resourceGroupName}&zoneName=${zoneName}&relativeRecordSetName=${name}&recordType=${type}`,
+        `https://dnsmanager-bfc3.onrender.com/api/lucid/record?subscriptionId=${subscriptionId}&resourceGroupName=${resourceGroupName}&zoneName=${zoneName}&relativeRecordSetName=${name}&recordType=${type}`,
         {
           headers: {
             Authorization: accessToken,
@@ -69,19 +70,22 @@ function RecordTable({
   };
   const handleUpdate = async (data: any) => {
     setL(true);
-    toast("creating zone wait");
+    toast("updating record wait");
     try {
-      const res = await axios.patch(`http://localhost:4002/api/lucid/record`, {
-        subscriptionId,
-        resourceGroupName,
-        zoneName,
-        accessToken,
-        relativeRecordSetName: data.name,
-        recordType: data.type,
-        ttl: data.ttl,
-      });
+      const res = await axios.patch(
+        `https://dnsmanager-bfc3.onrender.com/api/lucid/record`,
+        {
+          subscriptionId,
+          resourceGroupName,
+          zoneName,
+          accessToken,
+          relativeRecordSetName: data.name,
+          recordType: data.type,
+          ttl: data.ttl,
+        }
+      );
       console.log(res.data);
-      toast.success("created successfully");
+      toast.success("updated successfully");
       setC(!change);
       setL(false);
     } catch (err) {
@@ -92,17 +96,20 @@ function RecordTable({
   };
   const handleCreate = async (data: any) => {
     setL(true);
-    toast("creating zone wait");
+    toast("creating record wait");
     try {
-      const res = await axios.put(`http://localhost:4002/api/lucid/record`, {
-        subscriptionId,
-        resourceGroupName,
-        zoneName,
-        accessToken,
-        relativeRecordSetName: data.name,
-        recordType: data.type,
-        ttl: data.ttl,
-      });
+      const res = await axios.put(
+        `https://dnsmanager-bfc3.onrender.com/api/lucid/record`,
+        {
+          subscriptionId,
+          resourceGroupName,
+          zoneName,
+          accessToken,
+          relativeRecordSetName: data.name,
+          recordType: data.type,
+          ttl: data.ttl,
+        }
+      );
       console.log(res.data);
       toast.success("created successfully");
       setC(!change);

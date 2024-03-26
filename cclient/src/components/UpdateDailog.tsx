@@ -5,10 +5,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { useState } from "react";
-import { DialogClose } from "@radix-ui/react-dialog";
 import { UpdateIcon } from "@radix-ui/react-icons";
 
 const UpdateDailog = ({ handleUpdate, data }: any) => {
