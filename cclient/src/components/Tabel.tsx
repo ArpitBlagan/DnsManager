@@ -16,6 +16,7 @@ const Tabel = ({
   resouceGroupName,
   handleDelete,
   handleUpdate,
+  match,
 }: any) => {
   return (
     <Table className="border backdrop-blur-lg rounded-xl p-2">
@@ -35,30 +36,37 @@ const Tabel = ({
       </TableHeader>
       <TableBody>
         {records.map((ele: any, index: number) => {
+          const kk = ele.name.toLowerCase();
+          const ff = match.toLowerCase();
           const type = ele.type.split("/").pop();
-          return (
-            <TableRow key={index} className="cursor-pointer">
-              <TableCell>{resouceGroupName}</TableCell>
-              <TableCell>{zoneName}</TableCell>
-              <TableCell>{ele.name}</TableCell>
-              <TableCell>{ele.etag}</TableCell>
-              <TableCell>{ele.properties.TTL}</TableCell>
-              <TableCell>{subscriptionId}</TableCell>
-              <TableCell>{type}</TableCell>
-              <TableCell>
-                <DelDialog
-                  handleDelete={handleDelete}
-                  data={{ name: ele.name, type }}
-                />
-              </TableCell>
-              <TableCell>
-                <UpdateDailog
-                  handleUpdate={handleUpdate}
-                  data={{ name: ele.name, type, ttl: ele.properties.TTL }}
-                />
-              </TableCell>
-            </TableRow>
-          );
+          const fff = type.toLowerCase();
+          if (match == "" || kk.includes(ff) || fff.includes(ff)) {
+            return (
+              <TableRow key={index} className="cursor-pointer">
+                <TableCell>{resouceGroupName}</TableCell>
+                <TableCell>{zoneName}</TableCell>
+                <TableCell>{ele.name}</TableCell>
+                <TableCell>{ele.etag}</TableCell>
+                <TableCell>{ele.properties.TTL}</TableCell>
+                <TableCell>{subscriptionId}</TableCell>
+                <TableCell>{type}</TableCell>
+                <TableCell>
+                  <DelDialog
+                    handleDelete={handleDelete}
+                    data={{ name: ele.name, type }}
+                  />
+                </TableCell>
+                <TableCell>
+                  <UpdateDailog
+                    handleUpdate={handleUpdate}
+                    data={{ name: ele.name, type, ttl: ele.properties.TTL }}
+                  />
+                </TableCell>
+              </TableRow>
+            );
+          } else {
+            return;
+          }
         })}
       </TableBody>
     </Table>

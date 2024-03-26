@@ -20,6 +20,7 @@ function RecordTable({
   const [records, setR] = useState<null | any>(null);
   const [change, setC] = useState(false);
   const [loading, setL] = useState(false);
+  const [match, setM] = useState("");
   useEffect(() => {
     const getRecord = async () => {
       toast("fetching records wait..");
@@ -135,7 +136,7 @@ function RecordTable({
       </h1>
       {records && (
         <div>
-          <div className="flex justify-end items-center my-2">
+          <div className="flex flex-col gap-3 md:flex-row justify-end items-center my-2">
             {loading ? (
               <Button variant={"destructive"} disabled={loading}>
                 Creating
@@ -144,11 +145,20 @@ function RecordTable({
             ) : (
               <CreateRecord handleCreate={handleCreate} />
             )}
+            <input
+              className="py-2 px-4 border backdrop-blur-lg rounded-xl"
+              value={match}
+              onChange={(e) => {
+                setM(e.target.value);
+              }}
+              placeholder="search by name or type..."
+            />
           </div>
           <Tabel
             subscriptionId={subscriptionId}
             resouceGroupName={resourceGroupName}
             records={records}
+            match={match}
             zoneName={zoneName}
             handleDelete={handleDelete}
             handleUpdate={handleUpdate}
