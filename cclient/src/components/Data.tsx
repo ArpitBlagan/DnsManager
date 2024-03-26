@@ -19,6 +19,7 @@ const Data = ({ accessToken, val, data, setData }: any) => {
   const navigate = useNavigate();
   const [change, setC] = useState(false);
   const [resources, setR] = useState<any[] | null>(null);
+  const [loading, setL] = useState(false);
   useEffect(() => {
     const getData = async () => {
       var headers = new Headers();
@@ -66,6 +67,7 @@ const Data = ({ accessToken, val, data, setData }: any) => {
     getData();
   }, [change]);
   const handleCreate = async (name: string, resource: string) => {
+    setL(true);
     toast("creating zone wait");
     try {
       const res = await axios.put(
@@ -77,13 +79,16 @@ const Data = ({ accessToken, val, data, setData }: any) => {
       );
       console.log(res.data);
       toast.success("created successfully");
+      setL(false);
       setC(!change);
     } catch (err) {
       console.log(err);
       toast.error("some thing went wrong not able to create zone..");
+      setL(false);
     }
   };
   const handleDeletee = async (ele: any) => {
+    setL(true);
     try {
       const res = await axios.delete(
         `https://dnsmanager-bfc3.onrender.com/api/lucid/zones?subscriptionId=${ele.subscriptionId}&resourceGroupName=${ele.resouceName}&zoneName=${ele.dnszone}`,
@@ -103,16 +108,23 @@ const Data = ({ accessToken, val, data, setData }: any) => {
           "something went wrong make sure to add .com etc in the end..."
         );
       }
+      setL(false);
     } catch (err) {
       console.log(err);
       toast.error("something went wrong");
+      setL(false);
     }
   };
   return (
     <div className="my-3">
+      {loading && <h1>working on the operation..</h1>}
       <div className="flex justify-end my-2">
         {resources && (
-          <CreateZone handleCreate={handleCreate} resources={resources} />
+          <CreateZone
+            handleCreate={handleCreate}
+            disabled={loading}
+            resources={resources}
+          />
         )}
       </div>
       <Table className="border backdrop-blur-lg rounded-xl p-2">

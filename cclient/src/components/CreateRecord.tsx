@@ -2,6 +2,7 @@ import {
   Dialog as DD,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -109,17 +110,19 @@ const CreateRecord = ({ handleCreate }: any) => {
             </div>
           </div>
         </div>
-        <DialogClose>
-          <Button
-            type="submit"
-            onClick={(e) => {
-              e.preventDefault();
-              handleCreate({ name, type, ttl });
-            }}
-          >
-            Create
-          </Button>
-        </DialogClose>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                handleCreate({ name, type, ttl });
+              }}
+            >
+              Create
+            </Button>
+          </DialogClose>
+        </DialogFooter>
       </DialogContent>
     </DD>
   );

@@ -2,7 +2,7 @@ import {
   Dialog as DD,
   DialogContent,
   DialogDescription,
-  DialogFooter,
+  DialogClose,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -24,7 +24,7 @@ const Dialog = ({ name, header, button }: any) => {
           </div>
           <div></div>
         </div>
-        <DialogFooter>
+        <DialogClose>
           {button.map((ele: string, index: number) => {
             return (
               <Button variant={"outline"} key={index}>
@@ -32,7 +32,7 @@ const Dialog = ({ name, header, button }: any) => {
               </Button>
             );
           })}
-        </DialogFooter>
+        </DialogClose>
       </DialogContent>
     </DD>
   );

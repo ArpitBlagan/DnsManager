@@ -6,6 +6,7 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogClose,
+  DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { TrashIcon } from "@radix-ui/react-icons";
@@ -21,18 +22,20 @@ const DelDialog = ({ handleDelete, data }: any) => {
           <DialogTitle>Are you sure?</DialogTitle>
           <DialogDescription>This action can't be undone!</DialogDescription>
         </DialogHeader>
-        <DialogClose>
-          <Button
-            type="submit"
-            variant={"outline"}
-            onClick={async (e) => {
-              e.preventDefault();
-              handleDelete(data);
-            }}
-          >
-            Delete
-          </Button>
-        </DialogClose>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button
+              type="submit"
+              variant={"outline"}
+              onClick={async (e) => {
+                e.preventDefault();
+                handleDelete(data);
+              }}
+            >
+              Delete
+            </Button>
+          </DialogClose>
+        </DialogFooter>
       </DialogContent>
     </DD>
   );

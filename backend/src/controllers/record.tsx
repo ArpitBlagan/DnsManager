@@ -78,7 +78,7 @@ export const deleteR = async (req: Request, res: Response) => {
 
 export const createR = async (req: Request, res: Response) => {
   const body = req.body;
-  const ttl = parseInt(body.ttl) | 3600;
+  const ttl = parseInt(body.ttl) | 0;
   delete body.ttl;
   const ff = otherSchame.safeParse(body);
   if (!ff.success) {

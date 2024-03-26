@@ -3,6 +3,7 @@ import {
   DialogClose,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -78,17 +79,19 @@ const CreateZone = ({ handleCreate, resources }: any) => {
             </DropdownMenu>
           </div>
         </div>
-        <DialogClose>
-          <Button
-            type="submit"
-            onClick={(e) => {
-              e.preventDefault();
-              handleCreate(name, res);
-            }}
-          >
-            Create
-          </Button>
-        </DialogClose>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                handleCreate(name, res);
+              }}
+            >
+              Create
+            </Button>
+          </DialogClose>
+        </DialogFooter>
       </DialogContent>
     </DD>
   );

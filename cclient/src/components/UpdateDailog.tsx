@@ -6,6 +6,7 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogClose,
+  DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { useState } from "react";
@@ -40,17 +41,19 @@ const UpdateDailog = ({ handleUpdate, data }: any) => {
             </div>
           </div>
         </div>
-        <DialogClose>
-          <Button
-            type="submit"
-            onClick={(e) => {
-              e.preventDefault();
-              handleUpdate({ name: data.name, ttl, type: data.type });
-            }}
-          >
-            Update
-          </Button>
-        </DialogClose>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                handleUpdate({ name: data.name, ttl, type: data.type });
+              }}
+            >
+              Update
+            </Button>
+          </DialogClose>
+        </DialogFooter>
       </DialogContent>
     </DD>
   );

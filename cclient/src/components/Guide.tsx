@@ -10,10 +10,15 @@ const Guide = () => {
             <span className="">
               The DNS Manager App is a powerful tool designed to simplify and
               streamline the management of Domain Name System (DNS)
-              configurations in Azure. With a user-friendly interface and robust
-              functionality, this application empowers users to efficiently
-              oversee their DNS settings, ensuring optimal performance,
-              reliability, and security for their Azure-based services.
+              configurations in Azure.
+              <span className="font-semibold">
+                {" "}
+                Giving consent during login is important
+              </span>{" "}
+              With a user-friendly interface and robust functionality, this
+              application empowers users to efficiently oversee their DNS
+              settings, ensuring optimal performance, reliability, and security
+              for their Azure-based services.
             </span>
             <Carousell />
           </CardContent>
