@@ -23,6 +23,7 @@ function RecordTable({
   const [match, setM] = useState("");
   useEffect(() => {
     const getRecord = async () => {
+      setL(true);
       toast("fetching records wait..");
       try {
         const res = await axios.get(
@@ -37,6 +38,7 @@ function RecordTable({
         console.log(res.data.value);
         setR(res.data.value);
         toast.success("successfully fetched the records");
+        setL(false);
       } catch (err) {
         console.log(err);
         //@ts-ignore
@@ -46,6 +48,7 @@ function RecordTable({
         } else {
           toast.error("something went wrong!");
         }
+        setL(false);
       }
     };
     getRecord();
