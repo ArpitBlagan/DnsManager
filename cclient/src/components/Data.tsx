@@ -69,8 +69,11 @@ const Data = ({ accessToken, val, data, setData }: any) => {
     toast("creating zone wait");
     try {
       const res = await axios.put(
-        `http://localhost:4002/api/lucid/zones?subscriptionId=${val}&resourceGroupName=${resource}&zoneName=${name}`,
-        { accessToken }
+        `https://dnsmanager-bfc3.onrender.com/api/lucid/zones?subscriptionId=${val}&resourceGroupName=${resource}&zoneName=${name}`,
+        { accessToken },
+        {
+          withCredentials: true,
+        }
       );
       console.log(res.data);
       toast.success("created successfully");
@@ -83,11 +86,12 @@ const Data = ({ accessToken, val, data, setData }: any) => {
   const handleDeletee = async (ele: any) => {
     try {
       const res = await axios.delete(
-        `http://localhost:4002/api/lucid/zones?subscriptionId=${ele.subscriptionId}&resourceGroupName=${ele.resouceName}&zoneName=${ele.dnszone}`,
+        `https://dnsmanager-bfc3.onrender.com/api/lucid/zones?subscriptionId=${ele.subscriptionId}&resourceGroupName=${ele.resouceName}&zoneName=${ele.dnszone}`,
         {
           headers: {
             Authorization: accessToken,
           },
+          withCredentials: true,
         }
       );
       console.log(res);

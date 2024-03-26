@@ -30,6 +30,7 @@ function RecordTable({
             headers: {
               Authorization: accessToken,
             },
+            withCredentials: true,
           }
         );
         console.log(res.data.value);
@@ -58,6 +59,7 @@ function RecordTable({
           headers: {
             Authorization: accessToken,
           },
+          withCredentials: true,
         }
       );
       console.log(res);
@@ -82,6 +84,9 @@ function RecordTable({
           relativeRecordSetName: data.name,
           recordType: data.type,
           ttl: data.ttl,
+        },
+        {
+          withCredentials: true,
         }
       );
       console.log(res.data);
@@ -108,6 +113,9 @@ function RecordTable({
           relativeRecordSetName: data.name,
           recordType: data.type,
           ttl: data.ttl,
+        },
+        {
+          withCredentials: true,
         }
       );
       console.log(res.data);
