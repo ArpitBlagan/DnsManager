@@ -3,7 +3,7 @@ const Footer = () => {
   return (
     <div className="flex flex-wrap gap-3 items-center justify-start mx-4 my-2 h-[100px]">
       <div>
-        <h1>Made by ❤️ By Arpit Blagan</h1>
+        <h1>Made with ❤️ By Arpit Blagan</h1>
       </div>
       <div>
         <a href="https://github.com/ArpitBlagan" target="_blank">
